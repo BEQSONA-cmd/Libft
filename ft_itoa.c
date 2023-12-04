@@ -1,42 +1,63 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btvildia <btvildia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 21:18:21 by btvildia          #+#    #+#             */
-/*   Updated: 2023/12/02 16:44:14 by btvildia         ###   ########.fr       */
+/*   Created: 2023/11/26 20:06:48 by btvildia          #+#    #+#             */
+/*   Updated: 2023/12/03 20:29:52 by btvildia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+size_t	ft_int_lent(int nb)
+{
+	int	s;
+
+	if (nb == 0)
+	{
+		return (1);
+	}
+	s = 0;
+	if (nb < 0)
+	{
+		s = 1;
+	}
+	while (nb)
+	{
+		s++;
+		nb = nb / 10;
+	}
+	return (s);
+}
+
+char	*ft_itoa(int n)
 {
 	unsigned int	i;
-	unsigned int	j;
 	char			*a;
+	int				x;
 
-	i = 0;
-	j = ft_strlen(s);
-	if (start >= j)
-	{
-		start = 0;
-		len = 0;
-	}
-	if (len > j - start)
-	{
-		len = j - start;
-	}
-	a = malloc(len + 1);
+	x = ft_int_lent(n);
+	a = malloc((x + 1) * sizeof(char));
 	if (!a)
 		return (NULL);
-	while (i < len)
+	if (n < 0)
 	{
-		a[i] = s[start + i];
-		i++;
+		a[0] = '-';
+		i = -n;
 	}
-	a[i] = '\0';
+	else
+	{
+		i = n;
+	}
+	a[x - 1] = '0';
+	a[x] = '\0';
+	while (i)
+	{
+		a[--x] = (i % 10) + '0';
+		i = i / 10;
+	}
 	return (a);
 }

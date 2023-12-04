@@ -1,42 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btvildia <btvildia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 21:18:21 by btvildia          #+#    #+#             */
-/*   Updated: 2023/12/02 16:44:14 by btvildia         ###   ########.fr       */
+/*   Created: 2023/12/01 20:34:03 by btvildia          #+#    #+#             */
+/*   Updated: 2023/12/04 13:56:34 by btvildia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	unsigned int	i;
-	unsigned int	j;
-	char			*a;
+	t_list	*a;
+	t_list	*ls;
 
-	i = 0;
-	j = ft_strlen(s);
-	if (start >= j)
+	ls = NULL;
+	if (!lst || !f || !del)
 	{
-		start = 0;
-		len = 0;
-	}
-	if (len > j - start)
-	{
-		len = j - start;
-	}
-	a = malloc(len + 1);
-	if (!a)
 		return (NULL);
-	while (i < len)
-	{
-		a[i] = s[start + i];
-		i++;
 	}
-	a[i] = '\0';
-	return (a);
+	while (lst)
+	{
+		a = malloc(sizeof(t_list));
+		if (!a)
+		{
+			ft_lstclear(&ls, (*del));
+			return (NULL);
+		}
+		a->content = f(lst->content);
+		a->next = NULL;
+		ft_lstadd_back(&ls, a);
+		lst = lst->next;
+	}
+	return (ls);
 }

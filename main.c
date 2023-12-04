@@ -6,13 +6,14 @@
 /*   By: btvildia <btvildia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:20:49 by escura            #+#    #+#             */
-/*   Updated: 2023/11/23 21:03:19 by btvildia         ###   ########.fr       */
+/*   Updated: 2023/12/04 13:50:16 by btvildia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <ctype.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 int	check_ft_atoi(void)
@@ -1015,6 +1016,770 @@ int	check_ft_strdup(void)
 	return (answer);
 }
 
+int	check_ft_substr(void)
+{
+	int		answer;
+	char	a[6][19] = {"helloo my friendss", "", "\200Hello",
+			"hellaa\0&&dkjhasd", "123hallo\300paulo"};
+	char	b[6][19] = {"loo my ", "", "\200Hello", "a\0&&dkj", "hallo\300"};
+	char	**c;
+
+	c = malloc(sizeof(a[1]) * sizeof(a));
+	answer = 1;
+	printf("__________FT_SUBSTR__________\n");
+	for (unsigned long i = 0; i < 6; i++)
+	{
+		c[0] = ft_substr(a[0], 3, 7);
+		c[1] = ft_substr(a[1], 0, 0);
+		c[2] = ft_substr(a[2], 0, 6);
+		c[3] = ft_substr(a[3], 5, 3);
+		c[4] = ft_substr(a[4], 3, 6);
+		c[5] = ft_substr(a[5], 3, 11);
+		if (strcmp(c[i], b[i]) == 0)
+		{
+			printf("✅  ");
+			printf("original: ");
+			printf("%-12s ", b[i]);
+			printf("| mine: ");
+			printf("%-12s ", c[i]);
+			printf("\n");
+		}
+		else
+		{
+			printf("❌  ");
+			printf("original: ");
+			printf("%-12s ", b[i]);
+			printf("| mine: ");
+			printf("%-12s ", c[i]);
+			printf("\n");
+			answer = 0;
+		}
+	}
+	free(c);
+	printf("\n");
+	return (answer);
+}
+
+int	check_ft_strjoin(void)
+{
+	int		answer;
+	char	a[5][20] = {"Hello ", " my\0", "", "with \300", "&$^XYP(^)"};
+	char	b[5][15] = {"World", "friend", "Hello", "in fun", "he\300"};
+	char	c[5][35] = {"Hello World", " myfriend", "Hello", "with \300in fun",
+			"&$^XYP(^)he\300"};
+	char	**d;
+
+	d = malloc(sizeof(c[1]) * sizeof(c));
+	answer = 1;
+	printf("__________FT_STRJOIN__________\n");
+	for (int i = 0; i < 5; i++)
+	{
+		d[i] = ft_strjoin(a[i], b[i]);
+		if (strcmp(d[i], c[i]) == 0)
+		{
+			printf("✅  ");
+			printf("original: ");
+			printf("%-12s ", c[i]);
+			printf("| mine: ");
+			printf("%-12s ", d[i]);
+			printf("\n");
+		}
+		else
+		{
+			printf("❌  ");
+			printf("original: ");
+			printf("%-12s ", c[i]);
+			printf("| mine: ");
+			printf("%-12s ", d[i]);
+			printf("\n");
+			answer = 0;
+		}
+	}
+	free(d);
+	printf("\n");
+	return (answer);
+}
+
+int	check_ft_strtrim(void)
+{
+	int		answer;
+	char	a[5][20] = {"baaaaaaab", " Hello", "", "Help", "&$^XYP(^)"};
+	char	b[5][15] = {"bb", " o", "bb", "ap", "))"};
+	char	c[5][35] = {"aaaaaaa", "Hell", "", "Hel", "&$^XYP(^"};
+	char	**d;
+	char	*e;
+
+	d = malloc(sizeof(c[1]) * sizeof(c));
+	answer = 1;
+	printf("__________FT_STRTRIM__________\n");
+	for (int i = 0; i < 5; i++)
+	{
+		d[i] = ft_strtrim(a[i], b[i]);
+		if (strcmp(d[i], c[i]) == 0)
+		{
+			printf("✅  ");
+			printf("original: ");
+			printf("%-12s ", c[i]);
+			printf("| mine: ");
+			printf("%-12s ", d[i]);
+			printf("\n");
+		}
+		else
+		{
+			printf("❌  ");
+			printf("original: ");
+			printf("%-12s ", c[i]);
+			printf("| mine: ");
+			printf("%-12s ", d[i]);
+			printf("\n");
+			answer = 0;
+		}
+	}
+	if (!(e = ft_strtrim(NULL, NULL)))
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12s ", NULL);
+		printf("| mine: ");
+		printf("%-12s ", e);
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12s ", NULL);
+		printf("| mine: ");
+		printf("%-12s ", e);
+		printf("\n");
+		answer = 0;
+	}
+	free(d);
+	printf("\n");
+	return (answer);
+}
+
+int	check_ft_split(void)
+{
+	int		answer;
+	char	c[7][15] = {"bbbb", "bbb", "hello", "my", "friend", "9-=)(())",
+			"Hello World"};
+	char	d[4][7][15] = {{"bbbb", "bbb"}, {"hello", "my", "friend"},
+			{"9-=)(())"}, {"Hello World"}};
+	int		j;
+	int		k;
+	int		check;
+
+	// char	a[4][15] = {"bbbbabbb", "hello my friend", "9-=)(())",
+	// 		"NHello WorldN"};
+	// char	b[4] = {'a', ' ', '\0', 'N'};
+	// char	***d = malloc((sizeof(c) * sizeof(c[0])) * sizeof(c[0][0]));
+	// for (int x = 0; x < 4; x++)
+	// {
+	// 	d[x] = ft_split(a[x], b[x]);
+	// }
+	answer = 1;
+	printf("__________FT_SPLIT__________\n");
+	for (int i = 0; i < 7; i++)
+	{
+		check = 0;
+		for (j = 0; j < 4; j++)
+		{
+			for (k = 0; k < 3; k++)
+			{
+				if (strcmp(c[i], d[j][k]) == 0)
+				{
+					printf("✅  ");
+					printf("original: ");
+					printf("%-12s ", c[i]);
+					printf("| mine: ");
+					printf("%-12s ", d[j][k]);
+					printf("\n");
+					check = 1;
+				}
+			}
+		}
+		if (!check)
+		{
+			printf("❌  ");
+			printf("original: ");
+			printf("%-12s ", c[i]);
+			printf("| mine: ");
+			printf("%-12s ", d[j][k]);
+			printf("\n");
+			answer = 0;
+		}
+	}
+	// free(d);
+	printf("\n");
+	return (answer);
+}
+
+int	check_ft_itoa(void)
+{
+	int		answer;
+	char	*a[5] = {"111111", "12312312", "0", "1", "-12345"};
+	int		b[] = {111111, 12312312, 0, 01, -12345};
+	int		len;
+	char	**c;
+
+	c = malloc(sizeof(a) * sizeof(a[1]));
+	for (int j = 0; j < 5; j++)
+	{
+		c[j] = ft_itoa(b[j]);
+	}
+	answer = 1;
+	printf("__________FT_ITOA__________\n");
+	len = 5;
+	if (strcmp(a[1], c[1]) == 0)
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12s ", a[1]);
+		printf("| mine: ");
+		printf("%-12s ", c[1]);
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12s ", a[1]);
+		printf("| mine: ");
+		printf("%-12s ", c[1]);
+		printf("\n");
+		answer = 0;
+	}
+	for (int i = 0; i < len; i++)
+	{
+		if (strcmp(a[i], c[i]) == 0)
+		{
+			printf("✅  ");
+			printf("original: ");
+			printf("%-12s ", a[i]);
+			printf("| mine: ");
+			printf("%-12s ", c[i]);
+			printf("\n");
+		}
+		else
+		{
+			printf("❌  ");
+			printf("original: ");
+			printf("%-12s ", a[i]);
+			printf("| mine: ");
+			printf("%-12s ", c[i]);
+			printf("\n");
+			answer = 0;
+		}
+	}
+	printf("\n");
+	return (answer);
+}
+
+char	ft_num(unsigned int i, char str)
+{
+	char	a;
+
+	a = str + i;
+	return (a);
+}
+
+int	check_ft_strmapi(void)
+{
+	int		answer;
+	char	*a;
+	char	*b;
+	char	*c;
+	char	*d;
+	char	*e;
+	char	*f;
+
+	e = NULL;
+	answer = 1;
+	printf("__________FT_STRMAPI__________\n");
+	a = "111111111";
+	b = "123456789";
+	f = ft_strmapi(e, ft_num);
+	c = ft_strmapi(a, ft_num);
+	d = ft_strmapi(NULL, ft_num);
+	if (strcmp(c, b) == 0)
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12s ", b);
+		printf("| mine: ");
+		printf("%-12s ", c);
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12s ", b);
+		printf("| mine: ");
+		printf("%-12s ", c);
+		printf("\n");
+		answer = 0;
+	}
+	if (d == NULL)
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12s ", NULL);
+		printf("| mine: ");
+		printf("%-12s ", d);
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12s ", NULL);
+		printf("| mine: ");
+		printf("%-12s ", d);
+		printf("\n");
+		answer = 0;
+	}
+	if (f == NULL)
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12s ", NULL);
+		printf("| mine: ");
+		printf("%-12s ", f);
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12s ", NULL);
+		printf("| mine: ");
+		printf("%-12s ", f);
+		printf("\n");
+		answer = 0;
+	}
+	printf("\n");
+	return (answer);
+}
+
+void	ft_nums(unsigned int i, char *str)
+{
+	if (*str >= 'a' && *str <= 'z')
+	{
+		*str = *str - ('a' - 'A');
+	}
+	i = i + 1;
+}
+
+int	check_ft_striteri(void)
+{
+	int		answer;
+	char	*b;
+	char	a[] = "Hello World";
+
+	answer = 1;
+	printf("__________FT_STRITERI__________\n");
+	b = "HELLO WORLD";
+	ft_striteri(a, ft_nums);
+	if (strcmp(a, b) == 0)
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12s ", b);
+		printf("| mine: ");
+		printf("%-12s ", a);
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12s ", b);
+		printf("| mine: ");
+		printf("%-12s ", a);
+		printf("\n");
+		answer = 0;
+	}
+	printf("\n");
+	return (answer);
+}
+
+int	check_ft_lstnew(void)
+{
+	int		answer;
+	int		*i;
+	char	*a;
+	t_list	*j;
+	t_list	*c;
+	t_list	*f;
+
+	answer = 1;
+	i = malloc(sizeof(int));
+	*i = 155555;
+	a = "Hello World";
+	j = ft_lstnew(i);
+	c = ft_lstnew(a);
+	f = ft_lstnew(NULL);
+	printf("__________FT_LSTNEW__________\n");
+	if (strcmp(a, (char *)c->content) == 0)
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12s ", a);
+		printf("| mine: ");
+		printf("%-12s ", (char *)c->content);
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12s ", a);
+		printf("| mine: ");
+		printf("%-12s ", (char *)c->content);
+		printf("\n");
+		answer = 0;
+	}
+	if (*i == *((int *)j->content))
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12d ", *i);
+		printf("| mine: ");
+		printf("%-12d ", *((int *)j->content));
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12d ", *i);
+		printf("| mine: ");
+		printf("%-12d ", *((int *)j->content));
+		printf("\n");
+		answer = 0;
+	}
+	if (f->content == NULL)
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12s ", NULL);
+		printf("| mine: ");
+		printf("%-12s ", f->content);
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12s ", NULL);
+		printf("| mine: ");
+		printf("%-12s ", f->content);
+		printf("\n");
+		answer = 0;
+	}
+	free(i);
+	free(j);
+	free(c);
+	free(f);
+	printf("\n");
+	return (answer);
+}
+
+int	check_ft_lstadd_front(void)
+{
+	int		answer;
+	t_list	*c;
+	char	*fir;
+	char	*mid;
+	char	*las;
+
+	answer = 1;
+	c = NULL;
+	ft_lstadd_front(&c, ft_lstnew("World"));
+	ft_lstadd_front(&c, ft_lstnew("my"));
+	ft_lstadd_front(&c, ft_lstnew("Hello"));
+	fir = "Hello";
+	mid = "my";
+	las = "World";
+	printf("__________FT_LSTADD_FRONT__________\n");
+	if (strcmp(fir, c->content) == 0)
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12s ", fir);
+		printf("| mine: ");
+		printf("%-12s ", c->content);
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12s ", fir);
+		printf("| mine: ");
+		printf("%-12s ", c->content);
+		printf("\n");
+		answer = 0;
+	}
+	c = c->next;
+	if (strcmp(mid, c->content) == 0)
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12s ", mid);
+		printf("| mine: ");
+		printf("%-12s ", c->content);
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12s ", mid);
+		printf("| mine: ");
+		printf("%-12s ", c->content);
+		printf("\n");
+		answer = 0;
+	}
+	c = c->next;
+	if (strcmp(las, c->content) == 0)
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12s ", las);
+		printf("| mine: ");
+		printf("%-12s ", c->content);
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12s ", las);
+		printf("| mine: ");
+		printf("%-12s ", c->content);
+		printf("\n");
+		answer = 0;
+	}
+	printf("\n");
+	c = NULL;
+	free(c);
+	return (answer);
+}
+
+int	check_ft_lstsize(void)
+{
+	int		answer;
+	t_list	*c;
+	int		i;
+	t_list	*d;
+	int		j;
+
+	answer = 1;
+	c = NULL;
+	d = malloc(sizeof(t_list));
+	d->content = "Hello";
+	d->next = NULL;
+	ft_lstadd_front(&c, ft_lstnew("World"));
+	ft_lstadd_front(&c, ft_lstnew("my"));
+	ft_lstadd_front(&c, ft_lstnew("Hello"));
+	i = ft_lstsize(c);
+	j = ft_lstsize(d);
+	printf("__________FT_LSTSIZE__________\n");
+	if (i == 3)
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12d ", 3);
+		printf("| mine: ");
+		printf("%-12d ", i);
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12d ", 3);
+		printf("| mine: ");
+		printf("%-12d ", i);
+		printf("\n");
+		answer = 0;
+	}
+	if (j == 1)
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12d ", 1);
+		printf("| mine: ");
+		printf("%-12d ", j);
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12d ", 1);
+		printf("| mine: ");
+		printf("%-12d ", j);
+		printf("\n");
+		answer = 0;
+	}
+	printf("\n");
+	free(c);
+	return (answer);
+}
+
+int	check_ft_lstlast(void)
+{
+	int		answer;
+	t_list	*c;
+	t_list	*a;
+	t_list	*d;
+	t_list	*b;
+
+	c = NULL;
+	answer = 1;
+	ft_lstadd_front(&c, ft_lstnew("World"));
+	ft_lstadd_front(&c, ft_lstnew("my"));
+	ft_lstadd_front(&c, ft_lstnew("Hello"));
+	ft_lstadd_back(&d, ft_lstnew("World"));
+	ft_lstadd_back(&d, ft_lstnew("my"));
+	ft_lstadd_back(&d, ft_lstnew("Hello"));
+	a = malloc(sizeof(t_list));
+	a = ft_lstlast(c);
+	b = malloc(sizeof(t_list));
+	b = ft_lstlast(d);
+	c = c->next;
+	c = c->next;
+	printf("__________FT_LSTLAST__________\n");
+	if (strcmp((char *)a->content, c->content) == 0)
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12s ", (char *)a->content);
+		printf("| mine: ");
+		printf("%-12s ", c->content);
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12s ", (char *)a->content);
+		printf("| mine: ");
+		printf("%-12s ", c->content);
+		printf("\n");
+		answer = 0;
+	}
+	if (strcmp((char *)b->content, d->content) == 0)
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12s ", (char *)b->content);
+		printf("| mine: ");
+		printf("%-12s ", d->content);
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12s ", (char *)b->content);
+		printf("| mine: ");
+		printf("%-12s ", d->content);
+		printf("\n");
+		answer = 0;
+	}
+	printf("\n");
+	c = NULL;
+	free(c);
+	return (answer);
+}
+
+int	check_ft_lstadd_back(void)
+{
+	int		answer;
+	t_list	*c;
+	char	*fir;
+	char	*mid;
+	char	*las;
+
+	answer = 1;
+	c = NULL;
+	ft_lstadd_back(&c, ft_lstnew("I"));
+	ft_lstadd_back(&c, ft_lstnew("Love"));
+	ft_lstadd_back(&c, ft_lstnew("Coding"));
+	fir = "I";
+	mid = "Love";
+	las = "Coding";
+	printf("__________FT_LSTADD_BACK__________\n");
+	if (strcmp(fir, c->content) == 0)
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12s ", fir);
+		printf("| mine: ");
+		printf("%-12s ", c->content);
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12s ", fir);
+		printf("| mine: ");
+		printf("%-12s ", c->content);
+		printf("\n");
+		answer = 0;
+	}
+	c = c->next;
+	if (strcmp(mid, c->content) == 0)
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12s ", mid);
+		printf("| mine: ");
+		printf("%-12s ", c->content);
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12s ", mid);
+		printf("| mine: ");
+		printf("%-12s ", c->content);
+		printf("\n");
+		answer = 0;
+	}
+	c = c->next;
+	if (strcmp(las, c->content) == 0)
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12s ", las);
+		printf("| mine: ");
+		printf("%-12s ", c->content);
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12s ", las);
+		printf("| mine: ");
+		printf("%-12s ", c->content);
+		printf("\n");
+		answer = 0;
+	}
+	printf("\n");
+	c = NULL;
+	free(c);
+	return (answer);
+}
+
 int	main(void)
 {
 	char	failed_functions[1024];
@@ -1042,5 +1807,17 @@ int	main(void)
 	!check_ft_toupper() && strcat(failed_functions, "ft_toupper ");
 	!check_ft_calloc() && strcat(failed_functions, "ft_calloc ");
 	!check_ft_strdup() && strcat(failed_functions, "ft_strdup ");
+	!check_ft_substr() && strcat(failed_functions, "ft_substr ");
+	!check_ft_strjoin() && strcat(failed_functions, "ft_strjoin ");
+	!check_ft_strtrim() && strcat(failed_functions, "ft_strtrim ");
+	!check_ft_split() && strcat(failed_functions, "ft_split ");
+	!check_ft_itoa() && strcat(failed_functions, "ft_itoa ");
+	!check_ft_strmapi() && strcat(failed_functions, "ft_strmapi ");
+	!check_ft_striteri() && strcat(failed_functions, "ft_striteri ");
+	!check_ft_lstnew() && strcat(failed_functions, "ft_lstnew ");
+	!check_ft_lstadd_front() && strcat(failed_functions, "ft_lstadd_front ");
+	!check_ft_lstsize() && strcat(failed_functions, "ft_lstsize ");
+	!check_ft_lstlast() && strcat(failed_functions, "ft_lstlast ");
+	!check_ft_lstadd_back() && strcat(failed_functions, "ft_lstadd_back ");
 	printf("\nFailed functions: [ %s ]\n\n", failed_functions);
 }

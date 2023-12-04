@@ -1,42 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btvildia <btvildia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 21:18:21 by btvildia          #+#    #+#             */
-/*   Updated: 2023/12/02 16:44:14 by btvildia         ###   ########.fr       */
+/*   Created: 2023/11/29 16:45:14 by btvildia          #+#    #+#             */
+/*   Updated: 2023/12/04 13:50:24 by btvildia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+t_list	*ft_lstlast(t_list *lst)
 {
-	unsigned int	i;
-	unsigned int	j;
-	char			*a;
-
-	i = 0;
-	j = ft_strlen(s);
-	if (start >= j)
+	if (!lst)
 	{
-		start = 0;
-		len = 0;
-	}
-	if (len > j - start)
-	{
-		len = j - start;
-	}
-	a = malloc(len + 1);
-	if (!a)
 		return (NULL);
-	while (i < len)
-	{
-		a[i] = s[start + i];
-		i++;
 	}
-	a[i] = '\0';
-	return (a);
+	while (lst->next != NULL)
+	{
+		lst = lst->next;
+	}
+	return (lst);
 }

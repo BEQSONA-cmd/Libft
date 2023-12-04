@@ -1,42 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btvildia <btvildia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 21:18:21 by btvildia          #+#    #+#             */
-/*   Updated: 2023/12/02 16:44:14 by btvildia         ###   ########.fr       */
+/*   Created: 2023/12/01 18:37:18 by btvildia          #+#    #+#             */
+/*   Updated: 2023/12/04 13:56:11 by btvildia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	unsigned int	i;
-	unsigned int	j;
-	char			*a;
+	t_list	*a;
+	t_list	*node;
 
-	i = 0;
-	j = ft_strlen(s);
-	if (start >= j)
+	if (!lst || !del)
 	{
-		start = 0;
-		len = 0;
+		return ;
 	}
-	if (len > j - start)
+	a = *lst;
+	while (a != NULL)
 	{
-		len = j - start;
+		node = a->next;
+		del(a->content);
+		free(a);
+		a = node;
 	}
-	a = malloc(len + 1);
-	if (!a)
-		return (NULL);
-	while (i < len)
-	{
-		a[i] = s[start + i];
-		i++;
-	}
-	a[i] = '\0';
-	return (a);
+	*lst = NULL;
 }

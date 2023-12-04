@@ -6,12 +6,11 @@
 /*   By: btvildia <btvildia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 22:49:01 by btvildia          #+#    #+#             */
-/*   Updated: 2023/11/23 20:49:55 by btvildia         ###   ########.fr       */
+/*   Updated: 2023/12/04 14:01:14 by btvildia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 char	*ft_strdup(const char *s1)
 {

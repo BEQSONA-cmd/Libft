@@ -1,42 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btvildia <btvildia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 21:18:21 by btvildia          #+#    #+#             */
-/*   Updated: 2023/12/02 16:44:14 by btvildia         ###   ########.fr       */
+/*   Created: 2023/11/27 17:15:53 by btvildia          #+#    #+#             */
+/*   Updated: 2023/12/03 22:19:28 by btvildia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+t_list	*ft_lstnew(void *content)
 {
-	unsigned int	i;
-	unsigned int	j;
-	char			*a;
+	t_list	*a;
 
-	i = 0;
-	j = ft_strlen(s);
-	if (start >= j)
+	a = malloc(sizeof(t_list));
+	if (a == NULL)
 	{
-		start = 0;
-		len = 0;
-	}
-	if (len > j - start)
-	{
-		len = j - start;
-	}
-	a = malloc(len + 1);
-	if (!a)
 		return (NULL);
-	while (i < len)
-	{
-		a[i] = s[start + i];
-		i++;
 	}
-	a[i] = '\0';
+	if (!content)
+	{
+		a->content = NULL;
+	}
+	else
+	{
+		a->content = content;
+	}
+	a->next = NULL;
 	return (a);
 }

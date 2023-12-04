@@ -1,42 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btvildia <btvildia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 21:18:21 by btvildia          #+#    #+#             */
-/*   Updated: 2023/12/02 16:44:14 by btvildia         ###   ########.fr       */
+/*   Created: 2023/11/27 16:10:40 by btvildia          #+#    #+#             */
+/*   Updated: 2023/12/03 21:54:18 by btvildia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned int	i;
-	unsigned int	j;
-	char			*a;
-
-	i = 0;
-	j = ft_strlen(s);
-	if (start >= j)
+	if (n == -2147483648)
 	{
-		start = 0;
-		len = 0;
+		ft_putchar_fd('-', fd);
+		ft_putchar_fd('2', fd);
+		ft_putnbr_fd(147483648, fd);
 	}
-	if (len > j - start)
+	else if (n < 0)
 	{
-		len = j - start;
+		ft_putchar_fd('-', fd);
+		n = -n;
+		ft_putnbr_fd(n, fd);
 	}
-	a = malloc(len + 1);
-	if (!a)
-		return (NULL);
-	while (i < len)
+	else if (n >= 10)
 	{
-		a[i] = s[start + i];
-		i++;
+		ft_putnbr_fd((n / 10), fd);
+		ft_putnbr_fd((n % 10), fd);
 	}
-	a[i] = '\0';
-	return (a);
+	else
+	{
+		ft_putchar_fd(((n % 10) + '0'), fd);
+	}
 }
