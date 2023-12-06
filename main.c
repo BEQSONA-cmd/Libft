@@ -6,7 +6,7 @@
 /*   By: btvildia <btvildia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:20:49 by escura            #+#    #+#             */
-/*   Updated: 2023/12/04 13:50:16 by btvildia         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:45:06 by btvildia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1780,6 +1780,340 @@ int	check_ft_lstadd_back(void)
 	return (answer);
 }
 
+void	ft_free(void *a)
+{
+	free(a);
+}
+
+int	check_ft_lstdelone(void)
+{
+	int		answer;
+	t_list	*node;
+	char	*a;
+	char	*b;
+
+	b = "";
+	a = "Hello";
+	answer = 1;
+	node = malloc(sizeof(t_list));
+	node->content = ft_strdup("Hello");
+	node->next = NULL;
+	printf("__________FT_LSTDELONE__________\n");
+	if (strcmp(a, node->content) == 0)
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12s ", a);
+		printf("| mine: ");
+		printf("%-12s ", node->content);
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12s ", a);
+		printf("| mine: ");
+		printf("%-12s ", node->content);
+		printf("\n");
+		answer = 0;
+	}
+	ft_lstdelone(node, ft_free);
+	if (strcmp(b, node->content) == 0)
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12s ", b);
+		printf("| mine: ");
+		printf("%-12s ", node->content);
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12s ", b);
+		printf("| mine: ");
+		printf("%-12s ", node->content);
+		printf("\n");
+		answer = 0;
+	}
+	printf("\n");
+	return (answer);
+}
+
+int	check_ft_lstclear(void)
+{
+	int		answer;
+	t_list	*c;
+	char	*a;
+	int		i;
+	char	b[3][6] = {"Hello", "My", "World"};
+
+	a = "";
+	i = 0;
+	c = malloc(sizeof(size_t));
+	c = NULL;
+	ft_lstadd_back(&c, ft_lstnew(ft_strdup("Hello")));
+	ft_lstadd_back(&c, ft_lstnew(ft_strdup("My")));
+	ft_lstadd_back(&c, ft_lstnew(ft_strdup("World")));
+	answer = 1;
+	printf("__________FT_CLEAR__________\n");
+	while (c != NULL && i < 3)
+	{
+		if (strcmp(b[i], c->content) == 0)
+		{
+			printf("✅  ");
+			printf("original: ");
+			printf("%-12s ", b[i]);
+			printf("| mine: ");
+			printf("%-12s ", c->content);
+			printf("\n");
+		}
+		else
+		{
+			printf("❌  ");
+			printf("original: ");
+			printf("%-12s ", b[i]);
+			printf("| mine: ");
+			printf("%-12s ", c->content);
+			printf("\n");
+			answer = 0;
+		}
+		i++;
+		c = c->next;
+	}
+	ft_lstadd_back(&c, ft_lstnew(ft_strdup("Hello")));
+	ft_lstadd_back(&c, ft_lstnew(ft_strdup("My")));
+	ft_lstadd_back(&c, ft_lstnew(ft_strdup("World")));
+	ft_lstclear(&c, ft_free);
+	if (c != NULL)
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12s ", a);
+		printf("| mine: ");
+		printf("%-12s ", c->content);
+		printf("\n");
+		answer = 0;
+	}
+	printf("\n");
+	return (answer);
+}
+
+void	ft_function(void *c)
+{
+	int	*value;
+
+	value = (int *)c;
+}
+
+int	check_ft_lstiter(void)
+{
+	int		answer;
+	int		b;
+	t_list	*c;
+	char	*a;
+	t_list	*d;
+
+	c = malloc(sizeof(t_list));
+	b = 42;
+	c->content = malloc(sizeof(int));
+	*(int *)(c->content) = 42;
+	c->next = NULL;
+	a = "Hello";
+	d = malloc(sizeof(t_list));
+	d->content = malloc(sizeof(char *));
+	d->content = "Hello";
+	d->next = NULL;
+	answer = 1;
+	printf("__________FT_LSTITER__________\n");
+	ft_lstiter(c, ft_function);
+	if (b == *(int *)(c->content))
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12d ", b);
+		printf("| mine: ");
+		printf("%-12d ", *(int *)(c->content));
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12d ", b);
+		printf("| mine: ");
+		printf("%-12d ", *(int *)(c->content));
+		printf("\n");
+		answer = 0;
+	}
+	if (strcmp(a, d->content) == 0)
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12s ", a);
+		printf("| mine: ");
+		printf("%-12s ", d->content);
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12s ", a);
+		printf("| mine: ");
+		printf("%-12s ", d->content);
+		printf("\n");
+		answer = 0;
+	}
+	free(c);
+	printf("\n");
+	return (answer);
+}
+
+void	ft_delete(void *content)
+{
+	free(content);
+}
+
+void	*square(void *content)
+{
+	int	*value;
+	int	*result;
+
+	value = (int *)content;
+	result = malloc(sizeof(int));
+	if (!result)
+		return (NULL);
+	*result = (*value) * (*value);
+	return (result);
+}
+
+int	check_ft_lstmap(void)
+{
+	int		answer;
+	int		x;
+	int		y;
+	int		z;
+	t_list	*c;
+	t_list	*d;
+	t_list	*e;
+	t_list	*a;
+	int		*content2;
+	int		*content3;
+	int		*content4;
+	t_list	*ls;
+
+	d = malloc(sizeof(t_list));
+	e = malloc(sizeof(t_list));
+	c = malloc(sizeof(t_list));
+	x = 4;
+	y = 9;
+	z = 16;
+	content2 = malloc(sizeof(int));
+	content3 = malloc(sizeof(int));
+	content4 = malloc(sizeof(int));
+	*content2 = 2;
+	*content3 = 3;
+	*content4 = 4;
+	c->content = content2;
+	c->next = d;
+	d->content = content3;
+	d->next = e;
+	e->content = content4;
+	e->next = NULL;
+	answer = 1;
+	printf("__________FT_LSTMAP__________\n");
+	a = ft_lstmap(c, &square, &ft_delete);
+	ls = ft_lstmap(NULL, &square, &ft_delete);
+	if (x == *(int *)(a->content))
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12d ", x);
+		printf("| mine: ");
+		printf("%-12d ", *(int *)(a->content));
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12d ", x);
+		printf("| mine: ");
+		printf("%-12d ", *(int *)(a->content));
+		printf("\n");
+		answer = 0;
+	}
+	a = a->next;
+	if (y == *(int *)(a->content))
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12d ", y);
+		printf("| mine: ");
+		printf("%-12d ", *(int *)(a->content));
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12d ", y);
+		printf("| mine: ");
+		printf("%-12d ", *(int *)(a->content));
+		printf("\n");
+		answer = 0;
+	}
+	a = a->next;
+	if (z == *(int *)(a->content))
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12d ", z);
+		printf("| mine: ");
+		printf("%-12d ", *(int *)(a->content));
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12d ", z);
+		printf("| mine: ");
+		printf("%-12d ", *(int *)(a->content));
+		printf("\n");
+		answer = 0;
+	}
+	if (ls == NULL)
+	{
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12s ", NULL);
+		printf("| mine: ");
+		printf("%-12s ", (char *)ls);
+		printf("\n");
+	}
+	else
+	{
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12s ", NULL);
+		printf("| mine: ");
+		printf("%-12s ", (char *)ls);
+		printf("\n");
+		answer = 0;
+	}
+	a->next = NULL;
+	free(c);
+	free(d);
+	free(e);
+	free(a);
+	printf("\n");
+	return (answer);
+}
+
 int	main(void)
 {
 	char	failed_functions[1024];
@@ -1819,5 +2153,9 @@ int	main(void)
 	!check_ft_lstsize() && strcat(failed_functions, "ft_lstsize ");
 	!check_ft_lstlast() && strcat(failed_functions, "ft_lstlast ");
 	!check_ft_lstadd_back() && strcat(failed_functions, "ft_lstadd_back ");
+	!check_ft_lstdelone() && strcat(failed_functions, "ft_lstdelone ");
+	!check_ft_lstclear() && strcat(failed_functions, "ft_lstclear ");
+	!check_ft_lstiter() && strcat(failed_functions, "ft_lstiter ");
+	!check_ft_lstmap() && strcat(failed_functions, "ft_lstmap ");
 	printf("\nFailed functions: [ %s ]\n\n", failed_functions);
 }
