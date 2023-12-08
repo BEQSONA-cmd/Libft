@@ -6,7 +6,7 @@
 /*   By: btvildia <btvildia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:20:49 by escura            #+#    #+#             */
-/*   Updated: 2023/12/08 16:43:35 by btvildia         ###   ########.fr       */
+/*   Updated: 2023/12/08 20:34:16 by btvildia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -474,17 +474,54 @@ int	check_ft_memcmp(void)
 
 int	check_ft_memcpy(void)
 {
-	int		answer;
 	char	a[3][15] = {"bonjornaa", "\0", "Hello"};
 	char	c[3][15] = {"aaaaa", "\0", "bbbb"};
 	char	b[3][15] = {"bonjornaa", "\0", "Hello"};
 	char	d[3][15] = {"aaaaa", "\0", "bbbb"};
 	int		len;
+	char	l[] = "aaaaaaaaa";
+	char	m[] = "bb";
+	int		answer;
+
+	
 
 	answer = 1;
 	usleep(200000);
 	printf("__________FT_MEMCPY__________\n");
 	len = 3;
+	
+	ft_memcpy(l, m, sizeof(l));
+	if (l[9] == 98)
+	{
+		usleep(100000);
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12d ", 98);
+		printf("| mine: ");
+		printf("%-12d ", l[9]);
+		printf("\n");
+	}
+	if (l[9] != 98)
+	{
+		usleep(100000);
+		printf("❌  ");
+		printf("original: ");
+		printf("%-12d ", 98);
+		printf("| mine: ");
+		printf("%-12d ", l[9]);
+		printf("\n");
+		answer = 0;
+	}
+	if (ft_memmove(NULL, NULL, 5) == NULL)
+	{
+		usleep(100000);
+		printf("✅  ");
+		printf("original: ");
+		printf("%-12s ", NULL);
+		printf("| mine: ");
+		printf("%-12s ", NULL);
+		printf("\n");
+	}
 	for (int i = 0; i < len; i++)
 	{
 		memcpy(a[i], c[i], sizeof(a[i]));
