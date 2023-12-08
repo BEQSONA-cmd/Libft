@@ -6,7 +6,7 @@
 /*   By: btvildia <btvildia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:20:49 by escura            #+#    #+#             */
-/*   Updated: 2023/12/08 16:32:20 by btvildia         ###   ########.fr       */
+/*   Updated: 2023/12/08 16:43:35 by btvildia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	check_ft_atoi(void)
 			"312312", "2312312"};
 
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	printf("\n__________FT_ATOI__________\n");
 	length = sizeof(str_atoi) / sizeof(str_atoi[0]);
 	for (int i = 0; i < length; i++)
@@ -103,7 +103,7 @@ int	check_ft_bzero(void)
 	size_t	i;
 
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_BZERO__________\n");
 	i = sizeof(a);
 	bzero(a, i);
@@ -154,7 +154,7 @@ int	check_ft_isalnum(void)
 	int		len;
 
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	len = sizeof(test) / sizeof(char);
 	printf("__________FT_ISALNUM__________\n");
 	for (int i = 0; i < len; i++)
@@ -199,7 +199,7 @@ int	check_ft_isalpha(void)
 	int		len;
 
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	len = sizeof(test) / sizeof(char);
 	printf("__________FT_ISALPHA__________\n");
 	for (int i = 0; i < len; i++)
@@ -245,7 +245,7 @@ int	check_ft_isascii(void)
 
 	answer = 1;
 	len = sizeof(test) / sizeof(char);
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_ISASCII__________\n");
 	for (int i = 0; i < len; i++)
 	{
@@ -290,7 +290,7 @@ int	check_ft_isdigit(void)
 
 	answer = 1;
 	len = sizeof(test) / sizeof(char);
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_ISDIGIT__________\n");
 	for (int i = 0; i < len; i++)
 	{
@@ -335,7 +335,7 @@ int	check_ft_isprint(void)
 
 	answer = 1;
 	len = sizeof(test) / sizeof(char);
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_ISPRINT__________\n");
 	for (int i = 0; i < len; i++)
 	{
@@ -381,7 +381,7 @@ int	check_ft_memchr(void)
 
 	answer = 1;
 	len = sizeof(b) / sizeof(b[1]);
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_MEMCHR__________");
 	for (int i = 0; i < len; i++)
 	{
@@ -431,7 +431,7 @@ int	check_ft_memcmp(void)
 	int		len;
 
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	len = sizeof(b) / sizeof(b[1]);
 	printf("__________FT_MEMCMP__________");
 	for (int i = 0; i < len; i++)
@@ -482,7 +482,7 @@ int	check_ft_memcpy(void)
 	int		len;
 
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_MEMCPY__________\n");
 	len = 3;
 	for (int i = 0; i < len; i++)
@@ -547,7 +547,7 @@ int	check_ft_memmove(void)
 	int		answer;
 
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_MEMMOVE__________\n");
 	len = 3;
 	ft_memmove(l, m, sizeof(l));
@@ -630,7 +630,7 @@ int	check_ft_memset(void)
 	size_t	i;
 
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_MEMSET__________\n");
 	i = sizeof(a);
 	memset(a, 97, i);
@@ -680,7 +680,7 @@ int	check_ft_strchr(void)
 
 	c = 'o';
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_STRCHR__________\n");
 	if (strncmp((strchr(a, c)), (ft_strchr(a, c)), sizeof(a)) == 0)
 	{
@@ -749,7 +749,7 @@ int	check_ft_strlcat(void)
 	int		len;
 
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_STRLCAT__________\n");
 	len = 5;
 	strlcat(a[1], c[1], 7);
@@ -824,7 +824,7 @@ int	check_ft_strlcpy(void)
 	char	y[4][15] = {"hi", "bbbbbbbbbb", "hello world", "copy null \0"};
 
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_STRCPY__________\n");
 	for (int i = 0; i < 4; i++)
 	{
@@ -876,7 +876,7 @@ int	check_ft_strlen(void)
 			"paulo is stupid", "", "1112312312412", "wtf is going on here"};
 
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_STRLEN__________\n");
 	size = sizeof(a) / sizeof(a[0]);
 	for (int i = 0; i < size; i++)
@@ -924,7 +924,7 @@ int	check_ft_strncmp(void)
 	int		y;
 
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	len = sizeof(b) / sizeof(b[1]);
 	printf("__________FT_STRCMP__________");
 	for (int i = 0; i < len; i++)
@@ -980,7 +980,7 @@ int	check_ft_strnstr(void)
 	char	*y;
 
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_STRNSTR__________\n");
 	x = strnstr(a[4], b[4], -1);
 	y = ft_strnstr(a[4], b[4], -1);
@@ -1052,7 +1052,7 @@ int	check_ft_strrchr(void)
 
 	c = 'o';
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_STRRCHR__________\n");
 	if (strncmp((strrchr(a, c)), (ft_strrchr(a, c)), sizeof(a)) == 0)
 	{
@@ -1119,7 +1119,7 @@ int	check_ft_tolower(void)
 
 	answer = 1;
 	len = sizeof(a) / sizeof(a[1]);
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_TOLOWER__________\n");
 	for (int i = 0; i < len; i++)
 	{
@@ -1166,7 +1166,7 @@ int	check_ft_toupper(void)
 
 	answer = 1;
 	len = sizeof(a) / sizeof(a[1]);
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_TOUPPER__________\n");
 	for (int i = 0; i < len; i++)
 	{
@@ -1222,7 +1222,7 @@ int	check_ft_calloc(void)
 	b = ft_calloc(x, y);
 	c = calloc(0, 0);
 	d = ft_calloc(0, 0);
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_CALLOC__________\n");
 	if (c != NULL || d != NULL)
 	{
@@ -1302,7 +1302,7 @@ int	check_ft_strdup(void)
 	int		len;
 
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_STRDUP__________\n");
 	len = 5;
 	strdup(a[1]);
@@ -1378,7 +1378,7 @@ int	check_ft_substr(void)
 
 	c = malloc(sizeof(a[1]) * sizeof(a));
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_SUBSTR__________\n");
 	for (unsigned long i = 0; i < 6; i++)
 	{
@@ -1436,7 +1436,7 @@ int	check_ft_strjoin(void)
 
 	d = malloc(sizeof(c[1]) * sizeof(c));
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_STRJOIN__________\n");
 	for (int i = 0; i < 5; i++)
 	{
@@ -1489,7 +1489,7 @@ int	check_ft_strtrim(void)
 
 	d = malloc(sizeof(c[1]) * sizeof(c));
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_STRTRIM__________\n");
 	for (int i = 0; i < 5; i++)
 	{
@@ -1572,7 +1572,7 @@ int	check_ft_split(void)
 	// 	d[x] = ft_split(a[x], b[x]);
 	// }
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_SPLIT__________\n");
 	for (int i = 0; i < 7; i++)
 	{
@@ -1635,7 +1635,7 @@ int	check_ft_itoa(void)
 		c[j] = ft_itoa(b[j]);
 	}
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_ITOA__________\n");
 	len = 5;
 	if (strcmp(a[1], c[1]) == 0)
@@ -1717,7 +1717,7 @@ int	check_ft_strmapi(void)
 
 	e = NULL;
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_STRMAPI__________\n");
 	a = "111111111";
 	b = "123456789";
@@ -1817,7 +1817,7 @@ int	check_ft_striteri(void)
 	char	a[] = "Hello World";
 
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_STRITERI__________\n");
 	b = "HELLO WORLD";
 	ft_striteri(a, ft_nums);
@@ -1872,7 +1872,7 @@ int	check_ft_lstnew(void)
 	j = ft_lstnew(i);
 	c = ft_lstnew(a);
 	f = ft_lstnew(NULL);
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_LSTNEW__________\n");
 	if (strcmp(a, (char *)c->content) == 0)
 	{
@@ -1971,7 +1971,7 @@ int	check_ft_lstadd_front(void)
 	fir = "Hello";
 	mid = "my";
 	las = "World";
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_LSTADD_FRONT__________\n");
 	if (strcmp(fir, c->content) == 0)
 	{
@@ -2072,7 +2072,7 @@ int	check_ft_lstsize(void)
 	ft_lstadd_front(&c, ft_lstnew("Hello"));
 	i = ft_lstsize(c);
 	j = ft_lstsize(d);
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_LSTSIZE__________\n");
 	if (i == 3)
 	{
@@ -2153,7 +2153,7 @@ int	check_ft_lstlast(void)
 	b = ft_lstlast(d);
 	c = c->next;
 	c = c->next;
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_LSTLAST__________\n");
 	if (strcmp((char *)a->content, c->content) == 0)
 	{
@@ -2229,7 +2229,7 @@ int	check_ft_lstadd_back(void)
 	fir = "I";
 	mid = "Love";
 	las = "Coding";
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_LSTADD_BACK__________\n");
 	if (strcmp(fir, c->content) == 0)
 	{
@@ -2330,7 +2330,7 @@ int	check_ft_lstdelone(void)
 	node = malloc(sizeof(t_list));
 	node->content = ft_strdup("Hello");
 	node->next = NULL;
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_LSTDELONE__________\n");
 	if (strcmp(a, node->content) == 0)
 	{
@@ -2405,7 +2405,7 @@ int	check_ft_lstclear(void)
 	ft_lstadd_back(&c, ft_lstnew(ft_strdup("My")));
 	ft_lstadd_back(&c, ft_lstnew(ft_strdup("World")));
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_CLEAR__________\n");
 	while (c != NULL && i < 3)
 	{
@@ -2488,7 +2488,7 @@ int	check_ft_lstiter(void)
 	d->content = "Hello";
 	d->next = NULL;
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_LSTITER__________\n");
 	ft_lstiter(c, ft_function);
 	if (b == *(int *)(c->content))
@@ -2600,7 +2600,7 @@ int	check_ft_lstmap(void)
 	e->content = content4;
 	e->next = NULL;
 	answer = 1;
-	usleep(300000);
+	usleep(200000);
 	printf("__________FT_LSTMAP__________\n");
 	a = ft_lstmap(c, &square, &ft_delete);
 	ls = ft_lstmap(NULL, &square, &ft_delete);

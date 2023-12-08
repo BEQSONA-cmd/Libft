@@ -63,10 +63,10 @@ $(NAME): $(OBJ)
 bonus: $(OBJ) $(B_OBJ)
 	ar rc $(NAME) $(OBJ) $(B_OBJ)
 
-test: $(NAME) bonus
-	$(CC) $(CFLAGS) $(NAME) main.c libft.a
-	make clean
-	./a.out
+# test: $(NAME) bonus
+# 	$(CC) $(CFLAGS) $(NAME) main.c libft.a
+# 	make clean
+# 	./a.out
 
 clean:
 	rm -f $(OBJ) $(B_OBJ)
