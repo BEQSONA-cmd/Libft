@@ -1,7 +1,5 @@
 NAME = libft.a
 
-INCLUDES = libft.h
-
 SRC = ft_isalpha.c\
 	ft_isdigit.c\
 	ft_isalnum.c\
@@ -55,13 +53,15 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
+.PHONY: all clean fclean re
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)
 
-bonus: $(B_OBJ)
-		ar rc $(NAME) $(OBJ) $(B_OBJ)
+bonus: $(OBJ) $(B_OBJ)
+	ar rc $(NAME) $(OBJ) $(B_OBJ)
 
 test: $(NAME) bonus
 	$(CC) $(CFLAGS) $(NAME) main.c libft.a
@@ -69,14 +69,11 @@ test: $(NAME) bonus
 	./a.out
 
 clean:
-	rm -f *.o
+	rm -f $(OBJ) $(B_OBJ)
 
 fclean: clean
-	rm -f *t
-	rm -f *.a
-	rm -f *.out
-	clear
+	rm -f $(NAME)
 
-re: fclean all
+re: fclean $(NAME)
 
-.PHONY: all clean fclean re
+.PHONY:	all clean fclean re bonus

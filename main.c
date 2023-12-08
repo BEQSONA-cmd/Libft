@@ -6,7 +6,7 @@
 /*   By: btvildia <btvildia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:20:49 by escura            #+#    #+#             */
-/*   Updated: 2023/12/08 15:17:02 by btvildia         ###   ########.fr       */
+/*   Updated: 2023/12/08 16:32:20 by btvildia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -2779,11 +2779,11 @@ int	main(void)
 	!check_ft_lstmap() && strcat(failed_functions, "ft_lstmap ");
 	if (overallStatus == EXIT_SUCCESS)
 	{
-		printf(GREEN "✅ [All files passed norminette checks.]\n" RESET);
+		printf(GREEN "✅ [All files passed norminette checks]\n" RESET);
 	}
 	else
 	{
-		printf(RED "❌ [One or more files failed norminette checks.]\n" RESET);
+		printf(RED "❌ [One or more files failed norminette checks]\n" RESET);
 	}
 	if (ft_strlen(failed_functions) > 5)
 	{
